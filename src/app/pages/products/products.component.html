@@ -1,0 +1,33 @@
+<div class="container">
+    <h1>Lista de tareas</h1>
+    <br />
+    <!-- <div>
+        <form [formGroup]="taskForm" autocomplete="off">
+            <input type="text" class="form-control input-search" (keyup)="validateNameTask()" #nameTask name="name"
+                placeholder="Tarea" formControlName="name">
+            <button (click)="addTask()" [disabled]="!taskForm.valid" class="btn btn-primary">Agregar</button>
+        </form>
+    </div> -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Logo</th>
+                <th>Fecha creación</th>
+                <th>Fecha Validación</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let product of products; index as i" class="">
+                <tr>
+                    <td>{{product.name}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.name}}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
