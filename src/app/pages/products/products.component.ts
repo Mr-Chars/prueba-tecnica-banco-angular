@@ -25,6 +25,5 @@ export class ProductsComponent implements OnInit {
 
   async getPokemons() {
     this.products = await firstValueFrom(this.productService.getProducts());
-    console.log(this.products);
   }
 }

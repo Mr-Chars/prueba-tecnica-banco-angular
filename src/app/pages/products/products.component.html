@@ -15,17 +15,17 @@
                 <th>Descripción</th>
                 <th>Logo</th>
                 <th>Fecha creación</th>
-                <th>Fecha Validación</th>
+                <th>Fecha Revición</th>
             </tr>
         </thead>
         <tbody>
             <ng-container *ngFor="let product of products; index as i" class="">
                 <tr>
                     <td>{{product.name}}</td>
-                    <td>{{product.name}}</td>
-                    <td>{{product.name}}</td>
-                    <td>{{product.name}}</td>
-                    <td>{{product.name}}</td>
+                    <td>{{product.description}}</td>
+                    <td>{{product.logo}}</td>
+                    <td>{{product.date_release}}</td>
+                    <td>{{product.date_revision}}</td>
                 </tr>
             </ng-container>
         </tbody>

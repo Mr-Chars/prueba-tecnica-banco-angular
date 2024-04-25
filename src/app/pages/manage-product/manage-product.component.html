@@ -1,1 +1,52 @@
-<p>manage-product works!</p>
+<div class="container">
+    <div class="container-head">
+        <h1>Formulario de registro</h1>
+    </div>
+    <form [formGroup]="productForm" autocomplete="off" (ngSubmit)="save()">
+        <div class="responsive-two-columns">
+            <div class="container-item">
+                <label class="label-input" for="id">Id</label>
+                <input autocomplete="off" type="text" id="id" class="input-style-1" name="id" formControlName="id">
+            </div>
+            <div class="container-item">
+                <label class="label-input" for="name">Nombre</label>
+                <input autocomplete="off" type="text" id="name" class="input-style-1" name="name"
+                    formControlName="name">
+            </div>
+            <div class="container-item">
+                <label class="label-input" for="description">Descripción</label>
+                <input autocomplete="off" type="text" id="description" class="input-style-1" name="description"
+                    formControlName="description">
+            </div>
+            <div class="container-item">
+                <label class="label-input" for="logo">Logo</label>
+                <input autocomplete="off" type="text" id="logo" class="input-style-1" name="logo"
+                    formControlName="logo">
+            </div>
+            <div class="container-item">
+                <label class="label-input" for="date_release">Fecha de lanzamiento</label>
+                <input autocomplete="off" type="text" id="date_release" class="input-style-1" name="date_release"
+                    formControlName="date_release">
+            </div>
+            <div class="container-item">
+                <label class="label-input" for="date_revision">Fecha de revición</label>
+                <input autocomplete="off" type="text" id="date_revision" class="input-style-1" name="date_revision"
+                    formControlName="date_revision">
+            </div>
+
+
+            <div class="container-btn-restart">
+                <button>
+                    Reiniciar
+                </button>
+            </div>
+
+            <div class="container-btn-send">
+                <button>
+                    Enviar
+                </button>
+            </div>
+        </div>
+    </form>
+
+</div>

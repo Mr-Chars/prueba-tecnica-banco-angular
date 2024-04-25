@@ -12,6 +12,10 @@ export const routes: Routes = [
         component: ManageProductComponent,
     },
     {
+        path: 'manage-product/:id',
+        component: ManageProductComponent,
+    },
+    {
         path: '',
         redirectTo: '/products',
         pathMatch: 'full',
