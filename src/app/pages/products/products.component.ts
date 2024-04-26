@@ -19,6 +19,7 @@ export class ProductsComponent implements OnInit {
   products: Array<PRODUCT> = [];
 
   wordSearched = '';
+  paginationQuantity = 5;
   constructor(
     public readonly productService: ProductService,
     public router: Router,
@@ -34,20 +35,24 @@ export class ProductsComponent implements OnInit {
 
   searchProduct() {
     const result = this.productsBase.filter((product) => product.name.includes(this.wordSearched));
-    this.products = result;
+    this.products = result.slice(0, this.paginationQuantity);
   }
 
   async getProducts() {
     try {
-      this.products = await firstValueFrom(this.productService.getProducts());
-      this.productsBase = this.products;
+      this.productsBase = await firstValueFrom(this.productService.getProducts());
+      this.searchProduct();
     } catch (error) {
       this.products = [];
     }
   }
 
   getQuantityProduct() {
-    return this.products.length;
+    let word = 'resultado';
+    if (this.products.length > 1) {
+      word = 'resultados';
+    }
+    return `${this.products.length} ${word}`;
   }
 
   edit(idProduct: string) {

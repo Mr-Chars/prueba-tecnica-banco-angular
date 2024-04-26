@@ -41,8 +41,12 @@
         </table>
 
         <div class="container-options">
-            <span>{{getQuantityProduct()}} resultados</span>
-
+            <span>{{getQuantityProduct()}}</span>
+            <select (change)="searchProduct()" [(ngModel)]="paginationQuantity" class="select-pagination">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+            </select>
         </div>
     </div>
 </div>

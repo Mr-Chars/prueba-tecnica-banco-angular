@@ -49,7 +49,16 @@
 
 .container-table table {
     border: 1px solid #F4F6F9;
-    margin-bottom: 10px !important;
+    margin-bottom: 40px !important;
+}
+
+.select-pagination {
+    right: 0;
+    position: absolute;
+}
+
+.container-options {
+    position: relative;
 }
 
 .container-table table,
