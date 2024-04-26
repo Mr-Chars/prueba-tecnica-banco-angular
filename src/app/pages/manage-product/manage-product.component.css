@@ -84,3 +84,18 @@
         width: 50%;
     }
 }
+
+@media (max-width:768px) {
+
+    .container-btn-restart button,
+    .container-btn-send button {
+        right: unset;
+        left: unset;
+        width: 90%;
+        margin-top: 5px;
+    }
+
+    .container-btn-restart {
+        text-align: unset;
+    }
+}
