@@ -3,3 +3,12 @@
     margin: 0px;
     padding: 0px;
 }
+
+.btn-primary {
+    color: #233263;
+    font-weight: 700;
+    background-color: #F5DF66;
+    cursor: pointer;
+    border: unset;
+    padding: 10px 15px;
+}

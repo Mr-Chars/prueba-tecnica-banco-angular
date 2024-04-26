@@ -1,33 +1,37 @@
 <div class="container">
-    <h1>Lista de tareas</h1>
-    <br />
-    <!-- <div>
-        <form [formGroup]="taskForm" autocomplete="off">
-            <input type="text" class="form-control input-search" (keyup)="validateNameTask()" #nameTask name="name"
-                placeholder="Tarea" formControlName="name">
-            <button (click)="addTask()" [disabled]="!taskForm.valid" class="btn btn-primary">Agregar</button>
-        </form>
-    </div> -->
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Logo</th>
-                <th>Fecha creación</th>
-                <th>Fecha Revición</th>
-            </tr>
-        </thead>
-        <tbody>
-            <ng-container *ngFor="let product of products; index as i" class="">
+    <div class="container-search">
+        <input type="text" class="form-control input-search" (keyup)="getProducts()" name="name"
+            placeholder="Search...">
+
+        <button class="btn-primary" (click)="goToManageProduct()">Agregar</button>
+    </div>
+    <div class="container-table">
+        <table>
+            <thead>
                 <tr>
-                    <td>{{product.name}}</td>
-                    <td>{{product.description}}</td>
-                    <td>{{product.logo}}</td>
-                    <td>{{product.date_release}}</td>
-                    <td>{{product.date_revision}}</td>
+                    <th>Logo</th>
+                    <th>Nombre del producto</th>
+                    <th>Descripción</th>
+                    <th>Fecha de libearción</th>
+                    <th>Fecha de reestructuración</th>
                 </tr>
-            </ng-container>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let product of products; index as i" class="">
+                    <tr>
+                        <td>{{product.logo}}</td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.description}}</td>
+                        <td>{{product.date_release}}</td>
+                        <td>{{product.date_revision}}</td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+
+        <div class="container-options">
+            <span>{{getQuantityProduct()}} resultados</span>
+
+        </div>
+    </div>
 </div>

@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PRODUCT } from '../../interfaces/generals.interface';
 import { ProductService } from '../../services/product.service';
 import { firstValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -13,17 +14,30 @@ import { firstValueFrom } from 'rxjs';
   styleUrl: './products.component.css'
 })
 export class ProductsComponent implements OnInit {
-  products: Array<PRODUCT>;
+  products: Array<PRODUCT> = [];
 
   constructor(
-    public readonly productService: ProductService
+    public readonly productService: ProductService,
+    public router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.getPokemons();
+    this.getProducts();
   }
 
-  async getPokemons() {
-    this.products = await firstValueFrom(this.productService.getProducts());
+  goToManageProduct() {
+    this.router.navigate(['/manage-product/']);
+  }
+
+  async getProducts(where = '') {
+    try {
+      this.products = await firstValueFrom(this.productService.getProducts());
+    } catch (error) {
+      this.products = [];
+    }
+  }
+
+  getQuantityProduct() {
+    return this.products.length;
   }
 }
