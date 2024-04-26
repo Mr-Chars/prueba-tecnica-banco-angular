@@ -8,6 +8,17 @@
     width: 80%;
     margin: auto;
     padding: 20px 0px;
+    position: relative;
+}
+
+.options-product {
+    height: 20px;
+    cursor: pointer;
+}
+
+.btn-add {
+    right: 0;
+    position: absolute;
 }
 
 .container-table table thead {
@@ -18,15 +29,54 @@
     padding: 10px 0;
 }
 
+.container-table table tbody tr td {
+    padding: 15px 0;
+}
+
+.input-search {
+    padding: 5px 2px;
+    border: 3px solid #D9DBDE;
+    border-radius: 6px;
+}
+
 .container-table {
     width: 80%;
     margin: auto;
     background-color: #fff;
     padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.container-table table {
+    border: 1px solid #F4F6F9;
+    margin-bottom: 10px !important;
 }
 
 .container-table table,
 .container-options {
     width: 95%;
     margin: auto;
+}
+
+.ul-list-options-dropdown {
+    display: none;
+    list-style-type: none;
+    right: 20px;
+    position: absolute;
+    top: 18px;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 6px 0 rgba(0, 0, 0, 0.19);
+    padding: 6px;
+}
+
+.box-btn-dropdown {
+    position: relative;
+}
+
+.box-btn-dropdown:hover .ul-list-options-dropdown {
+    display: block;
+}
+
+.ul-list-options-dropdown li {
+    padding: 5px 0px;
+    cursor: pointer;
 }

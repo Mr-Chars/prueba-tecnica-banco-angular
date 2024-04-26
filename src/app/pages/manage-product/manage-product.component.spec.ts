@@ -26,4 +26,14 @@ describe('ManageProductComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should getProduct', () => {
+    component.getProduct();
+    
+  });
+
+  it('should checkIfIdExist', () => {
+    component.checkIfIdExist();
+    // expect(component.isIdProductValid).toBeTruthy();
+  });
 });

@@ -1,9 +1,8 @@
 <div class="container">
     <div class="container-search">
-        <input type="text" class="form-control input-search" (keyup)="getProducts()" name="name"
-            placeholder="Search...">
+        <input type="text" class="input-search" (keyup)="getProducts()" name="name" placeholder="Search...">
 
-        <button class="btn-primary" (click)="goToManageProduct()">Agregar</button>
+        <button class="btn-primary btn-add" (click)="goToManageProduct()">Agregar</button>
     </div>
     <div class="container-table">
         <table>
@@ -14,6 +13,7 @@
                     <th>Descripción</th>
                     <th>Fecha de libearción</th>
                     <th>Fecha de reestructuración</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -22,8 +22,18 @@
                         <td>{{product.logo}}</td>
                         <td>{{product.name}}</td>
                         <td>{{product.description}}</td>
-                        <td>{{product.date_release}}</td>
-                        <td>{{product.date_revision}}</td>
+                        <td>{{product.date_release | date: 'yyyy/MM/dd'}}</td>
+                        <td>{{product.date_revision| date: 'yyyy/MM/dd'}}</td>
+                        <td>
+                            <div class="box-btn-dropdown">
+                                <img src="assets/svgs/three-dots-vertical.svg" alt="three-dots-vertical"
+                                    class="options-product">
+                                <ul class="ul-list-options-dropdown">
+                                    <li (click)="edit(product.id)">Editar</li>
+                                    <li (click)="delete(product.id)">Eliminar</li>
+                                </ul>
+                            </div>
+                        </td>
                     </tr>
                 </ng-container>
             </tbody>

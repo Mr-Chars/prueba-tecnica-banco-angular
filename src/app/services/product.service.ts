@@ -10,6 +10,18 @@ export class ProductService {
   urlBase = 'https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/bp/products';
   constructor(private http: HttpClient) { }
 
+  deleteProduct(idProduct: string) {
+    let headers = new HttpHeaders();
+    headers = headers.append('authorId', '75164573');
+    return this.http.delete(`${this.urlBase}?id=${idProduct}`, { headers });
+  }
+
+  updateProduct(body: PRODUCT) {
+    let headers = new HttpHeaders();
+    headers = headers.append('authorId', '75164573');
+    return this.http.put(this.urlBase, body, { headers });
+  }
+
   addProduct(body: PRODUCT) {
     let headers = new HttpHeaders();
     headers = headers.append('authorId', '75164573');
@@ -36,8 +48,9 @@ export class ProductService {
       return { status: false };
     }
     const products = await firstValueFrom(this.http.get<PRODUCT[]>(`${this.urlBase}`, { headers }));
-    products.find(product => product.id === idProduct);
-    return { ...products[0], status: true };
+    const productSearched = products.find(product => product.id === idProduct);
+
+    return { ...productSearched, status: true };
 
   }
 
