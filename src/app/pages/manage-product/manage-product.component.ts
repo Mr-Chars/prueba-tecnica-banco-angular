@@ -56,8 +56,6 @@ export class ManageProductComponent {
 
   async getProduct() {
     const productSearched: RESPONSE_SEARCH_PRODUCT_BY_ID = await this.productService.getProductById(this.idProduct);
-    console.log(productSearched);
-    console.log(this.idProduct);
     if (productSearched.status) {
       this.productForm.controls['id'].setValue(productSearched.id!);
       this.productForm.controls['name'].setValue(productSearched.name!);
@@ -75,8 +73,6 @@ export class ManageProductComponent {
     this.isIdProductValid = false;
     try {
       const existId = await firstValueFrom(this.productService.checkIfExistProductById(this.productForm.value.id!));
-      console.log(existId);
-
       if (!existId) {
         this.isIdProductValid = true;
       }
@@ -95,6 +91,7 @@ export class ManageProductComponent {
     };
 
     try {
+      this.resetForm();
       if (this.idProduct) {
         await firstValueFrom(this.productService.updateProduct(PRODUCT));
       } else {
