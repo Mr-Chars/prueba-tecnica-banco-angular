@@ -12,3 +12,14 @@
     border: unset;
     padding: 10px 15px;
 }
+
+.display-errors {
+    margin-top: 0;
+    width: 100%;
+    text-align: center;
+    color: red;
+}
+
+.display-errors p {
+    margin-top: 0 !important;
+}

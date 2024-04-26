@@ -50,8 +50,13 @@
     cursor: pointer;
 }
 
+.container-btn-send button:disabled {
+    background-color: #000;
+}
+
 .label-input,
-.input-style-1 {
+.input-style-1,
+.display-errors {
     display: block;
     width: 80%;
     margin: auto;

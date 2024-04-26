@@ -3,8 +3,8 @@ export interface PRODUCT {
     name: string;
     description: string;
     logo: string;
-    date_release: Date;
-    date_revision: Date;
+    date_release: string;
+    date_revision: string;
 }
 export interface RESPONSE_SEARCH_PRODUCT_BY_ID {
     status: boolean;
@@ -12,6 +12,6 @@ export interface RESPONSE_SEARCH_PRODUCT_BY_ID {
     name?: string;
     description?: string;
     logo?: string;
-    date_release?: Date;
-    date_revision?: Date;
+    date_release?: string;
+    date_revision?: string;
 }

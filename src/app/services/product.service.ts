@@ -10,6 +10,18 @@ export class ProductService {
   urlBase = 'https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/bp/products';
   constructor(private http: HttpClient) { }
 
+  addProduct(body: PRODUCT) {
+    let headers = new HttpHeaders();
+    headers = headers.append('authorId', '75164573');
+    return this.http.post(this.urlBase, body, { headers });
+  }
+
+  checkIfExistProductById(idProduct: string) {
+    let headers = new HttpHeaders();
+    headers = headers.append('authorId', '75164573');
+    return this.http.get<boolean>(`${this.urlBase}/verification?id=${idProduct}`, { headers });
+  }
+
   getProducts() {
     let headers = new HttpHeaders();
     headers = headers.append('authorId', '75164573');
