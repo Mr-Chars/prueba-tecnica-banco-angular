@@ -47,8 +47,8 @@
             </div>
             <div class="container-item">
                 <label class="label-input" for="date_release">Fecha de lanzamiento</label>
-                <input autocomplete="off" type="date" id="date_release" class="input-style-1" name="date_release"
-                    formControlName="date_release">
+                <input autocomplete="off" (change)="checkDateRelease()" type="date" id="date_release"
+                    class="input-style-1" name="date_release" formControlName="date_release">
                 <div *ngIf="productForm.controls.date_release.invalid && (productForm.controls.date_release.dirty || productForm.controls.date_release.touched)"
                     class="display-errors">
                     <app-display-errors-validation-input
@@ -57,13 +57,8 @@
             </div>
             <div class="container-item">
                 <label class="label-input" for="date_revision">Fecha de revisión</label>
-                <input autocomplete="off" type="date" id="date_revision" class="input-style-1" name="date_revision"
-                    formControlName="date_revision">
-                <div *ngIf="productForm.controls.date_revision.invalid && (productForm.controls.date_revision.dirty || productForm.controls.date_revision.touched)"
-                    class="display-errors">
-                    <app-display-errors-validation-input
-                        [type]="productForm.controls.date_revision.errors"></app-display-errors-validation-input>
-                </div>
+                <input autocomplete="off" readonly type="date" id="date_revision" class="input-style-1"
+                    name="date_revision" formControlName="date_revision">
             </div>
 
 

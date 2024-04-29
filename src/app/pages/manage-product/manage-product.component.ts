@@ -22,6 +22,7 @@ import { MESSAGES, REGEXS_CODES, ROUTES } from '../../constanst.ts/generals';
 export class ManageProductComponent {
   idProduct: string;
   isIdProductValid = true;
+  lastDateRelease = new Date().toISOString().split('T')[0];
 
   productForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.pattern(REGEXS_CODES.id)]),
@@ -47,12 +48,36 @@ export class ManageProductComponent {
   ngOnInit(): void {
     if (this.idProduct) {
       this.getProduct();
+    } else {
+      const aYearFrom = new Date();
+      aYearFrom.setFullYear(aYearFrom.getFullYear() + 1);
+      this.productForm.controls['date_revision'].setValue(aYearFrom.toISOString().split('T')[0]);
+    }
+  }
+
+  isDateBeforeToday(date: Date) {
+    if (date.toISOString().split('T')[0] === new Date().toISOString().split('T')[0]) {
+      return false;
+    }
+    return new Date(date.toISOString()) < new Date(new Date().toISOString());
+  }
+
+  checkDateRelease() {
+    const date_release = this.productForm?.value?.date_release!;
+    const aYearFrom = new Date(date_release);
+    if (this.isDateBeforeToday(aYearFrom)) {
+      this.productForm.controls['date_release'].setValue(this.lastDateRelease);
+    } else {
+      this.lastDateRelease = date_release;
+      aYearFrom.setFullYear(aYearFrom.getFullYear() + 1);
+      this.productForm.controls['date_revision'].setValue(aYearFrom.toISOString().split('T')[0]);
     }
   }
 
   resetForm() {
     this.productForm.reset();
     this.productForm.controls['date_release'].setValue(new Date().toISOString().split('T')[0]);
+    this.lastDateRelease = new Date().toISOString().split('T')[0];
   }
 
   async getProduct() {
@@ -64,6 +89,7 @@ export class ManageProductComponent {
       this.productForm.controls['logo'].setValue(productSearched.logo!);
       this.productForm.controls['date_release'].setValue(productSearched.date_release!.slice(0, 10));
       this.productForm.controls['date_revision'].setValue(productSearched.date_revision!.slice(0, 10));
+      this.lastDateRelease = productSearched.date_release!.slice(0, 10);
     }
   }
 
