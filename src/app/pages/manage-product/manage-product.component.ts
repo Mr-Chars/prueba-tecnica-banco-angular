@@ -7,6 +7,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { DisplayErrorsValidationInputComponent } from '../../pluggins/display-errors-validation-input/display-errors-validation-input.component';
 import swal from 'sweetalert2';
+import { MESSAGES, REGEXS_CODES, ROUTES } from '../../constanst.ts/generals';
 @Component({
   selector: 'app-manage-product',
   standalone: true,
@@ -23,9 +24,9 @@ export class ManageProductComponent {
   isIdProductValid = true;
 
   productForm = new FormGroup({
-    id: new FormControl('', [Validators.required, Validators.pattern(/^[*a-zA-ZÀ-ú0-9#,._@: ]{3,10}$/)]),
-    name: new FormControl('', [Validators.required, Validators.pattern(/^[*a-zA-ZÀ-ú0-9#,._@: ]{5,100}$/)]),
-    description: new FormControl('', [Validators.required, Validators.pattern(/^[*a-zA-ZÀ-ú0-9#,._@: ]{10,200}$/)]),
+    id: new FormControl('', [Validators.required, Validators.pattern(REGEXS_CODES.id)]),
+    name: new FormControl('', [Validators.required, Validators.pattern(REGEXS_CODES.name)]),
+    description: new FormControl('', [Validators.required, Validators.pattern(REGEXS_CODES.description)]),
     logo: new FormControl('', [Validators.required]),
     date_release: new FormControl(new Date().toISOString().split('T')[0], [Validators.required]),
     date_revision: new FormControl('', [Validators.required]),
@@ -98,14 +99,14 @@ export class ManageProductComponent {
         await firstValueFrom(this.productService.addProduct(PRODUCT));
       }
       swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "El producto se guardó de manera exitosa",
+        position: 'top-end',
+        icon: 'success',
+        title: MESSAGES.successSaveProduct,
         showConfirmButton: false,
         timer: 1500
       });
       setTimeout(() => {
-        this.router.navigate(['/products']);
+        this.router.navigate([`/${ROUTES.products}`]);
       }, 1600);
     } catch (error) {
 

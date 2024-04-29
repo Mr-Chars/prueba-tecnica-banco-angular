@@ -6,6 +6,7 @@ import { ProductService } from '../../services/product.service';
 import { firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
+import { COLORS, MESSAGES, RANDOMS, ROUTES } from '../../constanst.ts/generals';
 
 @Component({
   selector: 'app-products',
@@ -30,7 +31,7 @@ export class ProductsComponent implements OnInit {
   }
 
   goToManageProduct() {
-    this.router.navigate(['/manage-product/']);
+    this.router.navigate([`/${ROUTES.manageProduct}/`]);
   }
 
   searchProduct() {
@@ -48,25 +49,25 @@ export class ProductsComponent implements OnInit {
   }
 
   getQuantityProduct() {
-    let word = 'resultado';
+    let word = RANDOMS.result;
     if (this.products.length > 1) {
-      word = 'resultados';
+      word = RANDOMS.results;
     }
     return `${this.products.length} ${word}`;
   }
 
   edit(idProduct: string) {
-    this.router.navigate([`/manage-product/${idProduct}`]);
+    this.router.navigate([`/${ROUTES.manageProduct}/${idProduct}`]);
   }
 
   async delete(idProduct: string) {
     swal.fire({
       title: ' ',
-      text: `Estas seguro de eliminar el producto ${idProduct}`,
+      text: `${MESSAGES.deletingProduct} ${idProduct}`,
       showCancelButton: true,
-      confirmButtonColor: '#F5DF66',
-      cancelButtonColor: '#EAECF2',
-      confirmButtonText: 'Confirmar'
+      confirmButtonColor: COLORS.yellow_1,
+      cancelButtonColor: COLORS.gray_1,
+      confirmButtonText: RANDOMS.confirm
     }).then(async (result) => {
 
       if (result.value) {
