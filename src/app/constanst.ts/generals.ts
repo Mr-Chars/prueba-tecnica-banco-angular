@@ -38,3 +38,7 @@ export const ERROR_OPTIONS_DISPLAY = {
     required: 'REQUIRED',
     pattern: 'PATTERN'
 }
+
+export const URLS = {
+    main_product: 'https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/bp/products'
+}

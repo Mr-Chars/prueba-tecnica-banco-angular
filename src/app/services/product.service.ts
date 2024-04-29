@@ -1,57 +1,44 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PRODUCT, RESPONSE_SEARCH_PRODUCT_BY_ID } from '../interfaces/generals.interface';
+import { PRODUCT } from '../interfaces/generals.interface';
 import { firstValueFrom } from 'rxjs';
+import { URLS } from '../constanst.ts/generals';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  urlBase = 'https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/bp/products';
   constructor(private http: HttpClient) { }
 
   deleteProduct(idProduct: string) {
-    let headers = new HttpHeaders();
-    headers = headers.append('authorId', '75164573');
-    return this.http.delete(`${this.urlBase}?id=${idProduct}`, { headers });
+    return this.http.delete(`${URLS.main_product}?id=${idProduct}`);
   }
 
   updateProduct(body: PRODUCT) {
-    let headers = new HttpHeaders();
-    headers = headers.append('authorId', '75164573');
-    return this.http.put(this.urlBase, body, { headers });
+    return this.http.put(URLS.main_product, body);
   }
 
   addProduct(body: PRODUCT) {
-    let headers = new HttpHeaders();
-    headers = headers.append('authorId', '75164573');
-    return this.http.post(this.urlBase, body, { headers });
+    return this.http.post(URLS.main_product, body);
   }
 
   checkIfExistProductById(idProduct: string) {
-    let headers = new HttpHeaders();
-    headers = headers.append('authorId', '75164573');
-    return this.http.get<boolean>(`${this.urlBase}/verification?id=${idProduct}`, { headers });
+    return this.http.get<boolean>(`${URLS.main_product}/verification?id=${idProduct}`);
   }
 
   getProducts() {
-    let headers = new HttpHeaders();
-    headers = headers.append('authorId', '75164573');
-    return this.http.get<PRODUCT[]>(`${this.urlBase}`, { headers });
+    return this.http.get<PRODUCT[]>(`${URLS.main_product}`);
   }
 
   async getProductById(idProduct: string) {
-    let headers = new HttpHeaders();
-    headers = headers.append('authorId', '75164573');
-    const existProduct: boolean = await firstValueFrom(this.http.get<boolean>(`${this.urlBase}/verification?id=${idProduct}`, { headers }));
+    const existProduct: boolean = await firstValueFrom(this.http.get<boolean>(`${URLS.main_product}/verification?id=${idProduct}`));
     if (!existProduct) {
       return { status: false };
     }
-    const products = await firstValueFrom(this.http.get<PRODUCT[]>(`${this.urlBase}`, { headers }));
+    const products = await firstValueFrom(this.http.get<PRODUCT[]>(`${URLS.main_product}`));
     const productSearched = products.find(product => product.id === idProduct);
 
     return { ...productSearched, status: true };
-
   }
 
 }
