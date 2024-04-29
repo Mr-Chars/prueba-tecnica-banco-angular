@@ -36,13 +36,6 @@ describe('ManageProductComponent', () => {
 
   });
 
-  it('should checkIfIdExist', async () => {
-    spyOn(productService, 'checkIfExistProductById').and.returnValue(of(false));
-    component.productForm.controls['id'].setValue('abcde');
-    await component.checkIfIdExist();
-    expect(component.isIdProductValid).toBeTruthy();
-  });
-
   it('should getProduct', async () => {
     spyOn(productService, 'getProductById').and.returnValue(Promise.resolve({
       status: true,
@@ -52,5 +45,23 @@ describe('ManageProductComponent', () => {
     }));
     await component.getProduct();
     expect(component.productForm.value.name).toBe('product 2');
+  });
+
+  it('should checkIfIdExist', async () => {
+    spyOn(productService, 'checkIfExistProductById').and.returnValue(of(false));
+    component.productForm.controls['id'].setValue('abcde');
+    await component.checkIfIdExist();
+    expect(component.isIdProductValid).toBeTruthy();
+  });
+
+  it('should save', async () => {
+    spyOn(productService, 'addProduct').and.returnValue(of({}));
+    await component.save();
+  });
+
+  it('should save 2', async () => {
+    component.idProduct = '8';
+    spyOn(productService, 'updateProduct').and.returnValue(of({}));
+    await component.save();
   });
 });

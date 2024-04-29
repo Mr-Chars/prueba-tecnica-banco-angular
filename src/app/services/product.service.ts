@@ -30,12 +30,16 @@ export class ProductService {
     return this.http.get<PRODUCT[]>(`${URLS.main_product}`);
   }
 
+  verification(idProduct: string) {
+    return this.http.get<boolean>(`${URLS.main_product}/verification?id=${idProduct}`);
+  }
+
   async getProductById(idProduct: string) {
-    const existProduct: boolean = await firstValueFrom(this.http.get<boolean>(`${URLS.main_product}/verification?id=${idProduct}`));
+    const existProduct: boolean = await firstValueFrom(this.verification(idProduct));
     if (!existProduct) {
       return { status: false };
     }
-    const products = await firstValueFrom(this.http.get<PRODUCT[]>(`${URLS.main_product}`));
+    const products = await firstValueFrom(this.getProducts());
     const productSearched = products.find(product => product.id === idProduct);
 
     return { ...productSearched, status: true };
